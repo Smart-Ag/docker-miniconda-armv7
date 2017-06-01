@@ -1,4 +1,4 @@
-NS = show0k
+NS = tantony
 VERSION ?= latest
 
 REPO = miniconda-armv7
