@@ -32,19 +32,20 @@ RUN apt-get install -y --no-install-recommends build-essential \
 
 # From https://github.com/conda-forge/docker-images/blob/master/linux-anvil/Dockerfile
 # Install the latest Miniconda with Python 3 and update everything.
-RUN curl -s -L http://repo.continuum.io/miniconda/Miniconda3-3.16.0-Linux-armv7l.sh > miniconda.sh && \
-    openssl md5 miniconda.sh | grep a01cbe45755d576c2bb9833859cf9fd7 && \
+RUN curl -s -L https://github.com/jjhelmus/berryconda/releases/download/v1.0.0/Berryconda3-1.0.0-Linux-armv7l.sh > miniconda.sh && \
+# RUN curl -s -L http://repo.continuum.io/miniconda/Miniconda3-3.16.0-Linux-armv7l.sh > miniconda.sh && \
+#    openssl md5 miniconda.sh | grep a01cbe45755d576c2bb9833859cf9fd7 && \
     bash miniconda.sh -b -p /opt/conda && \
     rm miniconda.sh && \
     export PATH=/opt/conda/bin:$PATH && \
     conda config --set show_channel_urls True && \
     conda config --add channels rpi && \
     conda config --add channels conda-forge && \
-    conda config --add channels poppy-project && \
+    conda update conda && \
+    conda install python=3.6 &&\
     conda update --all --yes && \
     conda install conda-build && \
     conda install anaconda-client && \
-    conda install python=3.6 &&\
 	conda clean -tipy
 
 ENV PATH /opt/conda/bin:$PATH
