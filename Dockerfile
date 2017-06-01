@@ -18,7 +18,7 @@ RUN [ "cross-build-start" ]
 
 # Basic requirements
 RUN apt-get update --fix-missing && apt-get install -y --no-install-recommends \
-	wget curl \
+	wget curl nano git \
 	bzip2 tar unzip \
 	ca-certificates \
     libglib2.0-0 libxext6 libsm6 libxrender1 
