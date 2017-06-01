@@ -1,6 +1,6 @@
-FROM resin/rpi-raspbian
+FROM armv7/armhf-ubuntu
 
-MAINTAINER Théo Segonds <theo.segonds@inria.fr>
+MAINTAINER Thomas Antony <tantony@smart-ag.com>
 
 ENV QEMU_EXECVE 1
 
@@ -38,11 +38,13 @@ RUN curl -s -L http://repo.continuum.io/miniconda/Miniconda3-3.16.0-Linux-armv7l
     rm miniconda.sh && \
     export PATH=/opt/conda/bin:$PATH && \
     conda config --set show_channel_urls True && \
+    conda config --add channels rpi && \
     conda config --add channels conda-forge && \
     conda config --add channels poppy-project && \
     conda update --all --yes && \
     conda install conda-build && \
     conda install anaconda-client && \
+    conda install python=3.6 &&\
 	conda clean -tipy
 
 ENV PATH /opt/conda/bin:$PATH
