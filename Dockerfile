@@ -1,4 +1,4 @@
-FROM armv7/armhf-ubuntu
+FROM aarch64/ubuntu
 
 MAINTAINER Thomas Antony <tantony@smart-ag.com>
 
@@ -9,9 +9,9 @@ ENV QEMU_EXECVE 1
 
 # Modified version of qemu https://github.com/resin-io/qemu
 # Highly inspired from https://github.com/resin-io-projects/armv7hf-debian-qemu
-COPY qemu/resin-xbuild qemu/qemu-arm-static  /usr/bin/
+COPY qemu/resin-xbuild qemu/qemu-aarch64-static  /usr/bin/
 
-RUN [ "qemu-arm-static", "/bin/sh", "-c", "ln -s resin-xbuild /usr/bin/cross-build-start; ln -s resin-xbuild /usr/bin/cross-build-end; mv /bin/sh /bin/sh.real; ln -s /bin/sh.real /bin/sh" ]
+RUN [ "qemu-aarch64-static", "/bin/sh", "-c", "ln -s resin-xbuild /usr/bin/cross-build-start; ln -s resin-xbuild /usr/bin/cross-build-end; mv /bin/sh /bin/sh.real; ln -s /bin/sh.real /bin/sh" ]
 
 # wrap the environment with qemu allowing building on x86_64 computer
 RUN [ "cross-build-start" ]
@@ -68,7 +68,7 @@ RUN export PATH="/opt/conda/bin:${PATH}" && \
 RUN [ "cross-build-end" ] 
 
 
-ENTRYPOINT [ "/usr/bin/qemu-arm-static", "/usr/bin/env", "QEMU_EXECVE=1" ]
+ENTRYPOINT [ "/usr/bin/qemu-aarch64-static", "/usr/bin/env", "QEMU_EXECVE=1" ]
 CMD [ "/bin/bash" ]
 
 
