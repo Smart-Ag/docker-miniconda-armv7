@@ -1,0 +1,22 @@
+name: SmartHPConda
+version: 0.1
+
+channels:
+  - https://conda.anaconda.org/aarch64_gbox
+  - https://conda.anaconda.org/SmartAg
+  - https://conda.anaconda.org/rpi
+  - https://conda.anaconda.org/jetson-tx2
+
+specs:
+  - python 3.6*
+  - conda
+  - pip
+  - numpy  [aarch64, armv7l]
+  - scipy
+  - notebook [aarch64, armv7l]
+  - matplotlib [aarch64]
+  - freetype [aarch64]
+  - paho-mqtt [armv7l]
+  - pyproj
+  - shapely
+  - docopt
