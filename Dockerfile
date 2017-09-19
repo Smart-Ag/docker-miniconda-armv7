@@ -11,7 +11,7 @@ ENV QEMU_EXECVE 1
 # Highly inspired from https://github.com/resin-io-projects/armv7hf-debian-qemu
 COPY qemu/resin-xbuild qemu/qemu-aarch64-static  /usr/bin/
 
-RUN [ "/usr/bin/qemu-aarch64-static", "/bin/bash", "-c", "ln -s resin-xbuild /usr/bin/cross-build-start; ln -s resin-xbuild /usr/bin/cross-build-end; mv /bin/sh /bin/sh.real; ln -s /bin/sh.real /bin/sh" ]
+RUN [ "qemu-aarch64-static", "/bin/sh", "-c", "ln -s resin-xbuild /usr/bin/cross-build-start; ln -s resin-xbuild /usr/bin/cross-build-end; mv /bin/sh /bin/sh.real; ln -s /bin/sh.real /bin/sh" ]
 
 # wrap the environment with qemu allowing building on x86_64 computer
 RUN [ "cross-build-start" ]
@@ -70,3 +70,5 @@ RUN [ "cross-build-end" ]
 
 ENTRYPOINT [ "/usr/bin/qemu-aarch64-static", "/usr/bin/env", "QEMU_EXECVE=1" ]
 CMD [ "/bin/bash" ]
+
+
