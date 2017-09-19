@@ -1,7 +1,7 @@
 NS = tantony
 VERSION ?= latest
 
-REPO = miniconda-armv7
+REPO = aarch64
 NAME = latest
 INSTANCE = default
 

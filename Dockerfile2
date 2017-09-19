@@ -1,0 +1,8 @@
+#FROM aarch64/ubuntu
+FROM forumi0721/ubuntu-aarch64-base
+
+COPY qemu/qemu-aarch64-static /usr/bin/qemu-aarch64-static
+
+ENTRYPOINT [ "/usr/bin/qemu-aarch64-static", "/usr/bin/env", "QEMU_EXECVE=1" ]
+CMD [ "/bin/bash" ]
+
