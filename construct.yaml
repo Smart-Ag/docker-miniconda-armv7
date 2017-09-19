@@ -10,6 +10,8 @@ channels:
 specs:
   - python 3.6*
   - conda
+  - conda-build
+  - libgfortran
   - pip
   - numpy  [aarch64, armv7l]
   - scipy
